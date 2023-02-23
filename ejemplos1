@@ -1,0 +1,45 @@
+public class Clasificador implements Comparator {
+
+	// Comparador que me ordene las cuentas en funcion de su saldo
+
+	@Override
+	public int compare(Object o1, Object o2) {
+		int retorno = 0;
+
+		if (((CuentaCorriente) o1).getNumeroDeCuenta() > ((CuentaCorriente) o2).getSaldoDCuenta()) {
+			retorno = 1;
+		} else if (((CuentaCorriente) o1).getNumeroDeCuenta() == ((CuentaCorriente) o2).getSaldoDCuenta()) {
+			retorno = 0;
+		} else {
+			retorno = -1;
+		}
+		return retorno;
+	}
+
+	public static void main(String[] args) {
+
+		ArrayList<CuentaCorriente> cuentas = new ArrayList<>();
+
+		CuentaCorriente cc1 = new CuentaCorriente(5000, "Primero", 1000000);
+		CuentaCorriente cc2 = new CuentaCorriente(1500, "Segundo", 1050000);
+		CuentaCorriente cc3 = new CuentaCorriente(6600, "Tercero", 1060000);
+		CuentaCorriente cc4 = new CuentaCorriente(8900, "Cuarto", 1008000);
+		CuentaCorriente cc5 = new CuentaCorriente(5900, "Quinto", 1004050);
+
+		cuentas.add(cc1);
+		cuentas.add(cc2);
+		cuentas.add(cc3);
+		cuentas.add(cc4);
+		cuentas.add(cc5);
+
+		Clasificador clas = new Clasificador();
+		cuentas.sort(clas);
+
+		Iterator it = cuentas.iterator();
+		while (it.hasNext()) {
+
+			System.out.println(((CuentaCorriente) (it.next())).getSaldoDCuenta());
+		}
+
+	}
+}
