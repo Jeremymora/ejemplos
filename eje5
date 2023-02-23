@@ -1,0 +1,94 @@
+public class Cliente implements Comparator {
+
+	String nombre;
+	String email;
+	int edad = 0;
+
+	public Cliente() {
+	}
+
+	public Cliente(String nombre, String email) {
+		this.nombre = nombre;
+		this.email = email;
+	}
+
+	private String getNombre() {
+		return nombre;
+	}
+
+	private void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	private String getEmail() {
+		return email;
+	}
+
+	private void setEmail(String email) {
+		this.email = email;
+	}
+
+	ArrayList<String> telefonos = new ArrayList<>();
+
+	public void addTelefono(String tel) {
+		boolean tes = false;
+		Iterator it = telefonos.iterator();
+		while (it.hasNext()) {
+			if (it.next() == telefonos) {
+				tes = true;
+				System.out.println("Ya se encuentra el telefono");
+			}
+			if (tes == false) {
+				telefonos.add(tel);
+			}
+
+		}
+
+		/*
+		 * Es el mismo codigo pero mas corto si no contiene el mismo elemento lo añade
+		 * if(!telefonos.contains(telefono)){ telefonos.add(telefono);
+		 */
+
+	}
+
+	public String getTelefono(int ind) {
+		if (telefonos.size() < ind) {
+			return telefonos.get(ind);
+		} else {
+			return "";
+		}
+	}
+
+	public ArrayList<String> buscarTelefono(String ini) {
+		ArrayList<String> existe = new ArrayList<>();
+
+		for (String valor : telefonos) {
+			if (valor.startsWith(ini)) {
+				existe.add(valor);
+			}
+		}
+
+		return existe;
+	}
+
+	@Override
+	public int compare(Object o1, Object o2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static void main(String[] args) {
+		Cliente cliente1 = new Cliente("Maria", "Maria1@gmail.com");
+		Cliente cliente2 = new Cliente("Juan", "Maria1@gmail.com");
+		Cliente cliente3 = new Cliente("Pedro", "Maria1@gmail.com");
+		Cliente cliente4 = new Cliente("Marta", "Maria1@gmail.com");
+
+		ArrayList<String> clientes = new ArrayList<>();
+		clientes.add(cliente1.getNombre());
+		clientes.add(cliente2.getNombre());
+		clientes.add(cliente3.getNombre());
+		clientes.add(cliente4.getNombre());
+
+	}
+
+}
