@@ -1,0 +1,85 @@
+HashMap<String, String> alumnos = new HashMap<>();
+	HashSet<String> hs = new HashSet<>();
+	Scanner sc = new Scanner(System.in);
+
+	// --------------------------------------------------
+	public void addAlumno(String dni, String nacionalidad) {
+		try {
+			if (nacionalidad.equals("") || dni.equals("")) {
+				throw new VacioException();
+			} else {
+				alumnos.put(dni, nacionalidad);
+			}
+		} catch (VacioException e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	// --------------------------------------------------
+	public void showAll() {
+		int cont = 0;
+		String nacionalidad = "";
+		String buscada = "";
+		for (String key : alumnos.keySet()) {
+			hs.add(alumnos.get(key));
+		}
+		Iterator it = hs.iterator();
+		while (it.hasNext()) {
+			cont = 0;
+			buscada = (String) it.next();
+
+			for (String key : alumnos.keySet()) {
+				nacionalidad = alumnos.get(key);
+
+				if (nacionalidad == buscada) {
+					cont++;
+				}
+			}
+			System.out.println(buscada + " : " + cont);
+		}
+	}
+
+	// --------------------------------------------------
+	public void showNacionalidad(String nacionalidad) {
+		int cont = 0;
+		String valor = "";
+
+		for (String key : alumnos.keySet()) {
+
+			if (nacionalidad == (String) alumnos.get(key)) {
+				cont++;
+			}
+		}
+
+		System.out.println("Hay " + cont + " alumnos de nacionalidad " + nacionalidad);
+	}
+
+	// --------------------------------------------------
+	public void cuantos() {
+		for (String key : alumnos.keySet()) {
+			hs.add(alumnos.get(key));
+		}
+		System.out.println("Hay " + hs.size() + " nacionalidades diferentes.");
+	}
+
+	// --------------------------------------------------
+	public void borra() {
+		alumnos.clear();
+	}
+
+	public static void main(String[] args) {
+		Colegio clg = new Colegio();
+
+		clg.addAlumno("1", "francesa");
+		clg.addAlumno("2", "francesa");
+		clg.addAlumno("3", "española");
+		clg.addAlumno("4", "española");
+		clg.addAlumno("5", "española");
+		clg.addAlumno("6", "alemana");
+		clg.addAlumno("7", "alemana");
+		clg.addAlumno("8", "alemana");
+		clg.addAlumno("9", "italiana");
+
+	}
+}
